@@ -14,7 +14,7 @@ const CardList = () => {
 
 
   return (
-    <div>
+    <div className='grid grid-cols-4'>
       {cards.map(card => (
         <Card key={card.id} card={card} onDelete={() => handleDelete(card)} />
       ))}

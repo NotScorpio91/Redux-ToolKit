@@ -45,7 +45,7 @@ const CardForm = () => {
   return (
     <div className="mb-4 flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4">
       <div className="flex-grow md:w-1/6">
-        <label className="block text-gray-600 mb-1">Client Name</label>
+        <label className="block text-black mb-1">Client Name</label>
         <input
           type="text"
           name="clientName"
@@ -55,7 +55,7 @@ const CardForm = () => {
         />
       </div>
       <div className="flex-grow md:w-1/6">
-        <label className="block text-gray-600 mb-1">Title</label>
+        <label className="block text-black mb-1">Title</label>
         <input
           type="text"
           name="title"
@@ -65,7 +65,7 @@ const CardForm = () => {
         />
       </div>
       <div className="flex-grow md:w-1/6">
-        <label className="block text-gray-600 mb-1">Description</label>
+        <label className="block text-black mb-1">Description</label>
         <input
           type="text"
           name="description"
@@ -75,7 +75,7 @@ const CardForm = () => {
         />
       </div>
       <div className="flex-grow md:w-1/6">
-        <label className="block text-gray-600 mb-1">Price</label>
+        <label className="block text-black mb-1">Price</label>
         <input
           type="text"
           name="price"
@@ -85,7 +85,7 @@ const CardForm = () => {
         />
       </div>
       <div className="flex-grow md:w-1/6">
-        <label className="block text-gray-600 mb-1">Due Date</label>
+        <label className="block text-black mb-1">Due Date</label>
         <input
           type="text"
           name="dueDate"
@@ -95,7 +95,7 @@ const CardForm = () => {
         />
       </div>
       <div className="flex-grow md:w-1/6">
-        <label className="block text-gray-600 mb-1">Created Date</label>
+        <label className="block text-black mb-1">Created Date</label>
         <input
           type="text"
           name="createdDate"
@@ -105,7 +105,7 @@ const CardForm = () => {
         />
       </div>
       <div className="flex-grow md:w-1/6">
-        <label className="block text-gray-600 mb-1">Image</label>
+        <label className="block text-black mb-1">Image</label>
         <input
           type="file"
           onChange={handleFileChange}
