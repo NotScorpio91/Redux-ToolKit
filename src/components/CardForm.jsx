@@ -70,7 +70,8 @@ const CardForm = () => {
   }, []);
 
   return (
-    <div className="mb-4 flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4">
+    <div className=" px-4">
+      <div className='mb-4 flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4'>
       <div className="flex-grow md:w-1/6">
         <label className="block text-black mb-1">Client Name</label>
         <input
@@ -147,18 +148,21 @@ const CardForm = () => {
           className="w-full border rounded-md py-1 px-2 focus:outline-none focus:border-blue-500"
         />
       </div>
-      <div className="flex-grow md:w-1/6">
+      </div>
+      <div className='flex justify-between md:justify-start pt-2 pb-5 '>
+      <div className="">
         <button onClick={handleSubmit} className="bg-blue-500 text-white py-2 px-4 rounded-md focus:outline-none hover:bg-blue-700">
           Add Card
         </button>
       </div>
       {cards.length > 0 && (
-        <div className="flex-grow md:w-1/6">
+        <div className="px-0 md:px-4">
           <button onClick={handleDeleteAll} className="bg-red-500 text-white py-2 px-4 rounded-md focus:outline-none hover:bg-red-700">
             Delete All Cards
           </button>
         </div>
       )}
+      </div>
     </div>
   );
 };
