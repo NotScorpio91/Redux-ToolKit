@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCard } from '../redux/features/cardsSlice';
 import { deleteAllCards } from '../redux/features/cardsSlice';
@@ -13,12 +13,13 @@ const CardForm = () => {
     description: '',
     price: '',
     dueDate: '',
-    createdDate: '',
+    createdDate: '', 
     image: '',
   });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleFileChange = (e) => {
@@ -26,21 +27,47 @@ const CardForm = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(addCard({ ...formData, id: Date.now() }));
-    setFormData({
-      clientName: '',
-      title: '',
-      description: '',
-      price: '',
-      dueDate: '',
-      createdDate: '',
-      image: '',
-    });
+
+    if (
+      formData.clientName &&
+      formData.title &&
+      formData.description &&
+      formData.price &&
+      formData.dueDate &&
+      formData.createdDate &&
+      formData.image
+    ) {
+    
+      const currentDate = new Date();
+      const formattedDate = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+      
+      dispatch(addCard({ ...formData, id: Date.now(), createdDate: formattedDate }));
+
+      setFormData({
+        clientName: '',
+        title: '',
+        description: '',
+        price: '',
+        dueDate: '',
+        createdDate: formattedDate,
+        image: '',
+      });
+    } else {
+
+      console.error('All fields are required');
+    }
   };
 
   const handleDeleteAll = () => {
     dispatch(deleteAllCards());
   };
+
+  useEffect(() => {
+    
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+    setFormData({ ...formData, createdDate: formattedDate });
+  }, []);
 
   return (
     <div className="mb-4 flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4">
@@ -50,7 +77,8 @@ const CardForm = () => {
           type="text"
           name="clientName"
           value={formData.clientName}
-          onChange={handleChange}
+          onChange={handleInputChange}
+          required
           className="w-full border rounded-md py-1 px-2 focus:outline-none focus:border-blue-500"
         />
       </div>
@@ -60,7 +88,8 @@ const CardForm = () => {
           type="text"
           name="title"
           value={formData.title}
-          onChange={handleChange}
+          onChange={handleInputChange}
+          required
           className="w-full border rounded-md py-1 px-2 focus:outline-none focus:border-blue-500"
         />
       </div>
@@ -70,7 +99,8 @@ const CardForm = () => {
           type="text"
           name="description"
           value={formData.description}
-          onChange={handleChange}
+          onChange={handleInputChange}
+          required
           className="w-full border rounded-md py-1 px-2 focus:outline-none focus:border-blue-500"
         />
       </div>
@@ -80,17 +110,19 @@ const CardForm = () => {
           type="text"
           name="price"
           value={formData.price}
-          onChange={handleChange}
+          onChange={handleInputChange}
+          required
           className="w-full border rounded-md py-1 px-2 focus:outline-none focus:border-blue-500"
         />
       </div>
       <div className="flex-grow md:w-1/6">
         <label className="block text-black mb-1">Due Date</label>
         <input
-          type="text"
+          type="date"
           name="dueDate"
           value={formData.dueDate}
-          onChange={handleChange}
+          onChange={handleInputChange}
+          required
           className="w-full border rounded-md py-1 px-2 focus:outline-none focus:border-blue-500"
         />
       </div>
@@ -100,8 +132,10 @@ const CardForm = () => {
           type="text"
           name="createdDate"
           value={formData.createdDate}
-          onChange={handleChange}
-          className="w-full border rounded-md py-1 px-2 focus:outline-none focus:border-blue-500"
+          onChange={handleInputChange}
+          readOnly 
+          required
+          className="w-full border rounded-md py-1 px-2 bg-gray-100"
         />
       </div>
       <div className="flex-grow md:w-1/6">
@@ -109,6 +143,7 @@ const CardForm = () => {
         <input
           type="file"
           onChange={handleFileChange}
+          required
           className="w-full border rounded-md py-1 px-2 focus:outline-none focus:border-blue-500"
         />
       </div>
