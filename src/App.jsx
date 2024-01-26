@@ -1,16 +1,13 @@
-
 import React from 'react';
-import { Provider } from 'react-redux';
-import { store } from './redux/store';
-import ImageGallery from './components/ImageGallery';
+import CardForm from './components/CardForm';
+import CardList from './components/CardList';
 
 function App() {
   return (
-    <Provider store={store}>
-      <div className="App">
-        <ImageGallery />
-      </div>
-    </Provider>
+    <div className="App">
+      <CardForm />
+      <CardList />
+    </div>
   );
 }
 

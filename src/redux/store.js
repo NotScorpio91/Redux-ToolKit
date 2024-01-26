@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import imageReducer from './Slices/imageSlice';
+import cardsReducer from './features/cardsSlice';
 
 export const store = configureStore({
   reducer: {
-    images: imageReducer,
+    cards: cardsReducer,
   },
 });
